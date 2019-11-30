@@ -1,0 +1,11 @@
+DEBUG = True
+USERNAME = 'root'
+PASSWORD = ''
+SERVER = 'localhost'
+DB = 'testepythonflask'
+
+SQLALCHEMY_DATABASE_URI = f'mysql://{USERNAME}:{PASSWORD}@{SERVER}/{DB}'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+SECRET_KEY = "abc123"  #usar um hash
+BABEL_DEFAULT_LOCALE ='pt'
