@@ -5,6 +5,8 @@ from app.forms import cliente_form
 from app.models import cliente_model
 from app.entidades import cliente
 from app.services import cliente_service
+import sys
+
 
 
 @app.route("/cadastrar_cliente", methods=["GET", "POST"])
@@ -45,7 +47,7 @@ def listar_cliente(id):
 def editar_cliente(id):
     cliente_bd = cliente_service.listar_cliente(id)
     form = cliente_form.ClienteForm(obj=cliente_bd)  # aqui criamos a variavel form que cria a instancia do cliente form e passa o  atributo obj o cliente que encontra no db, isso é pra quando for editar um cliente o formulario aparecer preenchido
-    form.sexo.data = cliente_bd.sexo
+    #form.sexo.data = cliente_bd.sexo
     if form.validate_on_submit():
         nome = form.nome.data
         email = form.email.data
@@ -60,6 +62,7 @@ def editar_cliente(id):
             return redirect(url_for("listar_clientes"))
         except:
             print("O cliente não foi editado")
+            print("Error:", sys.exc_info()[0])
 
     return render_template("clientes/form.html", form=form)
 
